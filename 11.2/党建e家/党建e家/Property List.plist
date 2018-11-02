@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>arry</key>
+	<array/>
+	<key>HeadImage</key>
+	<string>头像</string>
+	<key>Name</key>
+	<string>姓名</string>
+	<key>IDCard</key>
+	<string>身份证</string>
+	<key>WorkAdress</key>
+	<string>工作地址</string>
+	<key>FamilyAdress</key>
+	<string>家庭住址</string>
+	<key>People</key>
+	<string>民族</string>
+	<key>WeiXin</key>
+	<string>微信号</string>
+	<key>QQ</key>
+	<string>QQ号</string>
+	<key>Sex</key>
+	<string>性别</string>
+	<key>Academic</key>
+	<string>学历</string>
+	<key>Work</key>
+	<string>职称</string>
+	<key>Salary</key>
+	<string>工资</string>
+	<key>New item</key>
+	<string></string>
+	<key>New item - 3</key>
+	<string></string>
+	<key>New item - 4</key>
+	<string></string>
+</dict>
+</plist>
