@@ -106,7 +106,7 @@
 -(void)next
 {
     if (!_id) {
-        [UILabel labelWithText:@"伤害999+" superView:self];
+        [UILabel labelWithText:@"请选择列表!" superView:self];
     }
     else
     {

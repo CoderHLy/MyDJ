@@ -17,10 +17,12 @@
     NSString *_titleStr;
     NSString *_contentStr;
     AFHTTPSessionManager *_manager;
+    MHProgress *_tips;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self addTips];
     self.view.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone | UIRectEdgeBottom;
     _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(8, 0, self.view.frame.size.width - 16, self.view.frame.size.height - 64)];
@@ -32,7 +34,6 @@
     
     //得到str
     [self getStr];
-    
     
     
 }
@@ -47,6 +48,7 @@
         self->_titleStr = [[responseObject objectForKey:@"data"] objectForKey:@"title"];
         self->_contentStr = [[responseObject objectForKey:@"data"] objectForKey:@"content"];
         [weakself createWebView];
+//        [self->_tips closeLoadingView];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error = %@", error);
     }];
@@ -107,5 +109,14 @@
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
-
+#pragma mark - 添加加载动画
+-(void)addTips
+{
+    NSLog(@"show");
+    _tips = [[MHProgress alloc] initWithType:MHPopViewTypeWrapContentWithTips failedBlock:^(){
+        NSLog(@"加载失败");
+    }];
+    [_tips showLoadingView];
+    //    [_tips closeLoadingView]; // 关闭
+}
 @end

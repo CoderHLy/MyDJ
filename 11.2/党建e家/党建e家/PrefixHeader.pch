@@ -16,5 +16,5 @@
 #import "AFNetworking.h"
 #import "Category.h"
 #import "AssignToObject.h"
-
+#import "MHProgress.h"
 #endif /* PrefixHeader_pch */

@@ -19,6 +19,7 @@
 @implementation HLNewsViewController{
     UITableView *_aTableView;
     NSMutableArray *_objArr;
+    MHProgress *_tips;
 }
 
 - (void)viewDidLoad {
@@ -27,6 +28,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone | UIRectEdgeBottom;
     NSLog(@"urlType = %@", _urlType);
     [self initTableView];
+//    [self addTips];
 }
 #pragma mark - 初始化tableView
 -(void)initTableView
@@ -52,6 +54,7 @@
     [obj getObjArr:^(NSMutableArray * _Nonnull arr) {
         self->_objArr = arr;
         [self->_aTableView reloadData];
+//        [self->_tips closeLoadingView]; // 关闭
     } type:_urlType];
 }
 #pragma mark - delegete
@@ -86,5 +89,15 @@
     vc.title = self.title;
     vc.newsId = obj.newsId;
     [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma mark - 添加加载动画
+-(void)addTips
+{
+    NSLog(@"show");
+    _tips = [[MHProgress alloc] initWithType:MHPopViewTypeWrapContentWithTips failedBlock:^(){
+        NSLog(@"加载失败");
+    }];
+    [_tips showLoadingView];
+    //    [_tips closeLoadingView]; // 关闭
 }
 @end
