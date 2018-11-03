@@ -28,7 +28,7 @@
 #pragma mark - 何龙，弹窗式动画label
 +(UILabel *)labelWithText:(NSString *)text superView:(UIView *)superView
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(SCREENWIDTH / 2 - 50, SCREENHEIGHT, 100, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(SCREENWIDTH / 2 - 50, SCREENHEIGHT / 3 * 2, 100, 30)];
     label.text = text;
     label.layer.cornerRadius = 5;
     label.font = [UIFont systemFontOfSize:14];
@@ -37,10 +37,11 @@
     label.backgroundColor = [Color(30, 28, 30) colorWithAlphaComponent:0.7];
     label.textColor = [UIColor whiteColor];
     [superView addSubview:label];
-    [UIView animateWithDuration:1.5 animations:^{
+    [UIView animateWithDuration:0.7 animations:^{
         label.frame = CGRectMake(SCREENWIDTH / 2 - 50, SCREENHEIGHT / 2 - 15, 100, 30);
     } completion:^(BOOL finished) {
-        [label removeFromSuperview];
+//        [label removeFromSuperview];
+        [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1];
     }];
     return label;
 }
