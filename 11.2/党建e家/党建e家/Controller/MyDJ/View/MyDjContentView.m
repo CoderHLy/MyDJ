@@ -60,7 +60,7 @@
             }];
         }
         
-        //登录按钮
+        //退出登录按钮
         _loginBtn = [UIButton buttonWithTag:00 Target:self selector:@selector(jumpLoginPage) superView:self];
         _loginBtn.backgroundColor = [UIColor redColor];
         _loginBtn.titleLabel.textColor = [UIColor whiteColor];

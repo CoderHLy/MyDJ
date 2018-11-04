@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *createTime;
 @property (nonatomic, strong) NSString *currentTime;
 @property (nonatomic, strong) NSNumber *commentCount;
-@property (nonatomic, strong) NSNumber *isPriv;
+@property (nonatomic, assign) int isPriv;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSNumber *type;
 

@@ -106,7 +106,7 @@
         }];
         
         //回复
-        _replyBtn = [UIButton btnWithBGcolor:[UIColor clearColor] settitle:@"回复" Font:13.0 cornerRadius:0 masksToBounds:NO superView:self.contentView section:@selector(replyMethod) Target:self settitlecolor:[UIColor blackColor]];
+        _replyBtn = [UIButton btnWithBGcolor:[UIColor clearColor] settitle:@"回复" Font:13.0 cornerRadius:0 masksToBounds:NO superView:self.contentView section:@selector(replyMethod:) Target:self settitlecolor:[UIColor blackColor]];
         _replyBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [_replyBtn makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self->_contentLab.bottom).offset(10);
@@ -141,7 +141,8 @@
         _typeLab.text = @"私密";
     }
 }
--(void)replyMethod
+//进入评论页面
+-(void)replyMethod:(UIButton *)sender
 {
     NSLog(@"@@@@@@@@回复一下@@@@@@@@@@");
 }

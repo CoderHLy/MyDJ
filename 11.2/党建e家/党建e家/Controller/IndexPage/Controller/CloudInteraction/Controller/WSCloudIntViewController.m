@@ -13,15 +13,21 @@
 #import "AssignToObject.h"
 #import "CloudeModel.h"
 #import "AddContentView.h"
+#import "WSCommentViewController.h"
+
 #define CLOUDEURL @"http://211.67.177.56:8080/hhdj/forum/forumList.do"
 
 @interface WSCloudIntViewController ()<UITableViewDelegate>
-
+{
+    CGFloat lastContentOffSet;
+}
 @property (nonatomic,strong) UITableView *cloTableView;
 
 @property (nonatomic,strong) CloudeDatSouProtocol *cloudeDatSouProtocol;
 
 @property (nonatomic,strong) AddContentView *addContentView;
+
+@property (nonatomic,strong) UIImageView *imageView;
 
 @end
 
@@ -39,8 +45,6 @@
         
         _cloTableView.delegate = self;
         _cloTableView.dataSource = _cloudeDatSouProtocol;
-        
-        
     }
     return _cloTableView;
 }
@@ -74,11 +78,10 @@
 //加号按钮
 -(void)initAddView
 {
-    
-    UIImageView *imageView = [UIImageView imageName:@"add_interaction" superView:self.view touch:YES];
-    imageView.backgroundColor = [UIColor clearColor];
-    [imageView setAlpha:0.9];
-    [imageView makeConstraints:^(MASConstraintMaker *make) {
+    _imageView = [UIImageView imageName:@"add_interaction" superView:self.view touch:YES];
+    _imageView.backgroundColor = [UIColor clearColor];
+    [_imageView setAlpha:0.9];
+    [_imageView makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(-50);
         make.right.equalTo(-20);
         make.width.height.equalTo(60);
@@ -86,7 +89,7 @@
     
     //添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addContetView)];
-    [imageView addGestureRecognizer:tap];
+    [_imageView addGestureRecognizer:tap];
 }
 //添加内容
 -(void)addContetView
@@ -106,7 +109,26 @@
 {
     return 120;
 }
-
+#pragma mark -------------------UIScrollViewDelegate--------------------
+- (void)scrollViewWillBeginDragging:(UITableView *)scrollView
+{
+    //全局变量记录滑动前的contentOffSet
+    lastContentOffSet = scrollView.contentOffset.y;
+}
+- (void)scrollViewDidScroll:(UITableView *)scrollView
+{
+    if (scrollView.contentOffset.y > lastContentOffSet)
+    {
+//        NSLog(@"上滑");
+        _imageView.hidden = YES;
+    }
+    else if (scrollView.contentOffset.y < lastContentOffSet)
+    {
+//        NSLog(@"下滑");
+        _imageView.hidden = NO;
+    }
+}
+//点击空白处隐藏评论视图
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     self.addContentView.hidden = YES;

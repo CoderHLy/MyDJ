@@ -33,7 +33,6 @@ typedef void(^exitBlock)(MyDjContentView *myDjContentView);
 
 @property (nonatomic,weak) id<MyDjContentViewDelegate> delegate;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

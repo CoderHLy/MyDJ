@@ -40,6 +40,6 @@
         NSLog(@"加载失败");
     }];
     [_tips showLoadingView];
-    //    [_tips closeLoadingView]; // 关闭
+    //[_tips closeLoadingView]; //关闭
 }
 @end

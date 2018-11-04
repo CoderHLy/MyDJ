@@ -14,7 +14,7 @@
 
 -(AFHTTPSessionManager *)manager
 {
-    if (!_manager)
+    if(!_manager)
     {
         _manager = [AFHTTPSessionManager manager];
         
@@ -41,7 +41,6 @@
 -(void)postWebData:(WSCallBack)block andUrlStr:(NSString *)url andDic:(NSDictionary *)dic
 {
     _arr = [NSMutableArray array];
-    
     [self.manager POST:url parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"responseObjct = %@", responseObject);
         if([url isEqualToString:@"http://211.67.177.56:8080/hhdj/user/updatePwd.do"])

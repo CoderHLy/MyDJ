@@ -7,8 +7,10 @@
 //
 
 #import "ChargeViewController.h"
+#import "ChargeView.h"
+@interface ChargeViewController ()<chargeDelegate>
 
-@interface ChargeViewController ()
+@property (nonatomic,strong) ChargeView *chargeView;
 
 @end
 
@@ -18,16 +20,34 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"收费缴纳";
+    
+    [self initChargeView];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)initChargeView
+{
+    _chargeView = [[ChargeView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+    _chargeView.delegate = self;
+    [self.view addSubview:_chargeView];
 }
-*/
+
+- (void)chargeMoney:(NSInteger)tag
+{
+    switch (tag) {
+        case 0:
+        {
+            NSLog(@"微信支付");
+        }
+            break;
+        case 1:
+        {
+            NSLog(@"支付宝支付");
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end
