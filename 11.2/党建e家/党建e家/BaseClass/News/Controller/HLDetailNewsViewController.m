@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self addTips];
+    [self addTips];
     self.view.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone | UIRectEdgeBottom;
     _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(8, 0, self.view.frame.size.width - 16, self.view.frame.size.height - 64)];
@@ -48,7 +48,7 @@
         self->_titleStr = [[responseObject objectForKey:@"data"] objectForKey:@"title"];
         self->_contentStr = [[responseObject objectForKey:@"data"] objectForKey:@"content"];
         [weakself createWebView];
-//        [self->_tips closeLoadingView];
+        [self->_tips closeLoadingView];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error = %@", error);
     }];
@@ -113,8 +113,10 @@
 -(void)addTips
 {
     NSLog(@"show");
+    __weak typeof (self)weakSelf = self;
     _tips = [[MHProgress alloc] initWithType:MHPopViewTypeWrapContentWithTips failedBlock:^(){
         NSLog(@"加载失败");
+        [UILabel labelWithText:@"加载失败~" superView:weakSelf.view];
     }];
     [_tips showLoadingView];
     //    [_tips closeLoadingView]; // 关闭

@@ -7,7 +7,7 @@
 //
 
 #import "HLNewsViewModel.h"
-
+#import <UIKit/UIKit.h>
 
 @implementation HLNewsViewModel{
     AFHTTPSessionManager *_manager;
@@ -38,6 +38,7 @@
     NSLog(@"show");
     _tips = [[MHProgress alloc] initWithType:MHPopViewTypeWrapContentWithTips failedBlock:^(){
         NSLog(@"加载失败");
+//        [UILabel labelWithText:@"网络开小差了哦~" superView:weakSelf];
     }];
     [_tips showLoadingView];
     //[_tips closeLoadingView]; //关闭
