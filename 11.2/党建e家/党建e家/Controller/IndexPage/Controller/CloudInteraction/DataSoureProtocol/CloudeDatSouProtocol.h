@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WSClodeIntTableViewCell.h"
 NS_ASSUME_NONNULL_BEGIN
+//双层代理2
+@protocol DataDelegate <NSObject>
 
-@interface CloudeDatSouProtocol : NSObject<UITableViewDataSource>
+-(void)jump;
+
+@end
+@interface CloudeDatSouProtocol : NSObject<UITableViewDataSource,CellDelegate>
+
+@property (nonatomic,weak)id<DataDelegate> delegate;
 
 @property (nonatomic,strong) NSMutableArray *cloudeDatSourceArr;
 

@@ -8,7 +8,6 @@
 //
 
 #import "CloudeDatSouProtocol.h"
-#import "WSClodeIntTableViewCell.h"
 #import "CloudeModel.h"
 @implementation CloudeDatSouProtocol
 
@@ -17,7 +16,7 @@
 {
     WSClodeIntTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WSClodeIntTableViewCell"];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
+    cell.delegate = self;
     CloudeModel *model = [[CloudeModel alloc] init];
     model = self.cloudeDatSourceArr[indexPath.row];
     [cell setModel:model];
@@ -29,6 +28,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.cloudeDatSourceArr.count;
+}
+
+#pragma mark--------cellDelegate-----------
+//双层代理2
+- (void)jump
+{
+    if (self.delegate) {
+        [_delegate jump];
+    }
 }
 
 @end

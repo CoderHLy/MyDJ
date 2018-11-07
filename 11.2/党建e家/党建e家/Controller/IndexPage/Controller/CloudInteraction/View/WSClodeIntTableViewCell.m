@@ -17,7 +17,6 @@
     UIImageView *_voiceView;
     UIImageView *_intraImgView;
     UILabel *_contentLab;
-    UIButton *_replyBtn;
     UIImageView *_messageImgView;
     UILabel *_typeLab;
 }
@@ -119,7 +118,7 @@
         _messageImgView = [UIImageView imageWithImage:@"message" subView:self.contentView];
         [_messageImgView makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self->_contentLab.bottom).offset(10);
-            make.right.equalTo(self->_replyBtn.right).offset(-35);
+            make.right.equalTo(self.replyBtn.right).offset(-35);
             make.width.equalTo(15);
             make.height.equalTo(15);
         }];
@@ -145,6 +144,12 @@
 -(void)replyMethod:(UIButton *)sender
 {
     NSLog(@"@@@@@@@@回复一下@@@@@@@@@@");
+    //双层代理1
+    if(self.delegate)
+    {
+        [_delegate jump];
+    }
+        
 }
 
 //转换时间戳

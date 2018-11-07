@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+//双层代理1
+@protocol CellDelegate <NSObject>
+
+-(void)jump;
+
+@end
 
 @interface WSClodeIntTableViewCell : UITableViewCell
+@property (nonatomic,weak)id<CellDelegate> delegate;
+
+@property (nonatomic,strong) UIButton *replyBtn;;
 
 -(void)setModel:(id)obj;
 

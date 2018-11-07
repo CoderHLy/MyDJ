@@ -17,7 +17,7 @@
 
 #define CLOUDEURL @"http://211.67.177.56:8080/hhdj/forum/forumList.do"
 
-@interface WSCloudIntViewController ()<UITableViewDelegate>
+@interface WSCloudIntViewController ()<UITableViewDelegate,DataDelegate>
 {
     CGFloat lastContentOffSet;
 }
@@ -45,6 +45,8 @@
         
         _cloTableView.delegate = self;
         _cloTableView.dataSource = _cloudeDatSouProtocol;
+        //双层代理第一步
+        _cloudeDatSouProtocol.delegate = self;
     }
     return _cloTableView;
 }
@@ -127,6 +129,12 @@
 //        NSLog(@"下滑");
         _imageView.hidden = NO;
     }
+}
+#pragma mark -------------------dataSourceDelegate--------------------
+//c 中双层代理实现跳转方法
+- (void)jump
+{
+    [self.navigationController pushViewController:[[WSCommentViewController alloc] init] animated:YES];
 }
 //点击空白处隐藏评论视图
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
