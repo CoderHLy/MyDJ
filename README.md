@@ -1,2 +1,1 @@
-# MyDJ
-This is our twice Project for DJ
+一个简单的项目
